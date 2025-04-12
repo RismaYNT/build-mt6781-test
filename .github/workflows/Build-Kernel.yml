@@ -175,10 +175,9 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         if [ ${{ env.ENABLE_KERNELSU }} = true ]; then 
-        ${{ env.CONFIG_LOCALVERSION_AUTO }} = true ]; then
         sed -i 's/^CONFIG_LOCALVERSION=".*"/CONFIG_LOCALVERSION="-${{ env.CONFIG_LOCALVERSION }}"/' arch/${{ env.KERNEL_ARCH }}/configs/${{ env.KERNEL_CONFIG }}
-        sed -i 's/^CONFIG_LOCALVERSION_AUTO=".*"/CONFIG_LOCALVERSION_AUTO="-${{ env.CONFIG_LOCALVERSION_AUTO }}"/' arch/${{ env.KERNEL_ARCH }}/configs/${{ env.KERNEL_CONFIG }}
         fi
+        
     - name: Setup ccache
       if: env.ENABLE_CCACHE == 'true'
       uses: hendrikmuhs/ccache-action@v1.2
