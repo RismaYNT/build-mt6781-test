@@ -200,7 +200,7 @@ jobs:
         fi
         
         export KBUILD_BUILD_HOST=${{ env.HOST }}
-        export KBUILD_BUILD_USER=${{ env.USER }} | tr A-Z a-z)
+        export KBUILD_BUILD_USER=${{ env.USER }}
         make -j$(nproc --all) CC=clang O=out ARCH=${{ env.KERNEL_ARCH }} ${{ env.EXTRA_CMDS }} ${{ env.KERNEL_CONFIG }}
         
         if [ ${{ env.ENABLE_CCACHE }} = true ]; then
