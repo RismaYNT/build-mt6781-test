@@ -166,7 +166,7 @@ jobs:
         else
             KSU_VERSION=""
         fi
-        echo "UPLOADNAME=-KernelSU$KSU_VERSION" >> $GITHUB_ENV
+        echo "UPLOADNAME=-KernelSU-Next$KSU_VERSION" >> $GITHUB_ENV
         if [ ${{ env.KSU_REVERT }} = true ]; then
             git apply $GITHUB_WORKSPACE/patches/KSU_REVERT.patch
         fi
@@ -201,7 +201,7 @@ jobs:
         fi
         
         export KBUILD_BUILD_HOST=${{ env.HOST }}
-        export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
+        export KBUILD_BUILD_USER=${{ env.USER }} | tr A-Z a-z)
         make -j$(nproc --all) CC=clang O=out ARCH=${{ env.KERNEL_ARCH }} ${{ env.EXTRA_CMDS }} ${{ env.KERNEL_CONFIG }}
         
         if [ ${{ env.ENABLE_CCACHE }} = true ]; then
